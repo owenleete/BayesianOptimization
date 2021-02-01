@@ -123,8 +123,8 @@ class BayesianOptimization(Observable):
         self._verbose = verbose
         self._bounds_transformer = bounds_transformer
         if self._bounds_transformer:
-            if hasattr(bounds_transformer, "bounds")==False:
-                print("reset bounds transformer")
+            if hasattr(self._bounds_transformer, "bounds")==False:
+                raise TypeError('test')
                 try:
                     self._bounds_transformer.initialize(self._space)
                 except (AttributeError, TypeError):
