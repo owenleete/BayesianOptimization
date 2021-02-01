@@ -124,6 +124,7 @@ class BayesianOptimization(Observable):
         self._bounds_transformer = bounds_transformer
         if self._bounds_transformer:
             if hasattr(bounds_transformer, "bounds")==False:
+                print("reset bounds transformer")
                 try:
                     self._bounds_transformer.initialize(self._space)
                 except (AttributeError, TypeError):
