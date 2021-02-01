@@ -123,11 +123,12 @@ class BayesianOptimization(Observable):
         self._verbose = verbose
         self._bounds_transformer = bounds_transformer
         if self._bounds_transformer:
-            try:
-                self._bounds_transformer.initialize(self._space)
-            except (AttributeError, TypeError):
-                raise TypeError('The transformer must be an instance of '
-                                'DomainTransformer')
+            if hasattr(bounds_transformer, "bounds")==False:
+                try:
+                    self._bounds_transformer.initialize(self._space)
+                except (AttributeError, TypeError):
+                    raise TypeError('The transformer must be an instance of '
+                                    'DomainTransformer')
 
         super(BayesianOptimization, self).__init__(events=DEFAULT_EVENTS)
 
